@@ -15,6 +15,7 @@ export class Markdown extends React.Component {
 	render() {
 		return(
 			<div className="__markdown">
+				<h1>{this.props.title}</h1>
                 <div dangerouslySetInnerHTML={{__html: this.props.content}}></div>
 				<hr></hr>
 			</div>

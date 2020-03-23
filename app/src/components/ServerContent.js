@@ -11,7 +11,7 @@ const markdownFiles = importAll(require.context('../assets/tasker/server', false
 		var aa = a.substring(19).split('.');
 		var bb = b.substring(19).split('.');
 		if (parseInt(aa[0]) === parseInt(bb[0])) {
-			return parseInt(aa[1].split('_')[0]) < parseInt(bb[1].split('_')[0]) ? -1 : 1;
+			return parseInt(aa[1].split(' - ')[0]) < parseInt(bb[1].split(' - ')[0]) ? -1 : 1;
 		}
 		return parseInt(aa[0]) < parseInt(bb[0]) ? -1 : 1;
 	});
@@ -26,13 +26,19 @@ export class ServerContent extends React.Component {
 
 	async componentDidMount() {
 		const posts = await Promise.all(
-			markdownFiles.map((file) => fetch(file).then((res) => res.text()))
-		).catch((err) => console.error(err));
-  
-		  this.setState((state) => ({ ...state, posts }));
-		  this.setState({
-			postTitles: markdownFiles
-		  });  
+			markdownFiles.map((file) => fetch(file)
+			.then((res) => res.text())
+			.then(text => {
+					let x = file.split(" - ")[1];
+					return {
+						content: text,
+						title: x.substring(0, x.length - 12)
+					};
+				}))
+			)
+		.catch((err) => console.error(err));
+
+		this.setState((state) => ({ ...state, posts }));
 	}
 	
 	componentWillMount() {
@@ -50,14 +56,13 @@ export class ServerContent extends React.Component {
 
 	render() {
 		const { posts } = this.state;
-		
 		return ( 
 			<Container>
 				<div className="col-md-12">
 					<div className="server_content">
 						{
 							posts.map((post, id) => (
-								<Markdown key={id} content={marked(post)}></Markdown>
+								<Markdown key={id} title={post.title} content={marked(post.content)}></Markdown>
 							))
 						}
 					</div>

@@ -24,8 +24,6 @@ export class Home extends React.Component {
 						<li>Rechten van de content naar <a href="https://studychain.nl/">studychain.nl</a></li>
 						<li><strong>Let op!</strong> De content kan niet up-to-date te zijn!</li>
 					</ul>
-					<p></p>
-					
                 </div>
             </Container>
 		)
