@@ -15,21 +15,23 @@ class App extends Component {
       <div className="">
         <Router>
             <div>
-                <nav className="nav justify-content-center mainMenu">
-                    <ul className="mainMenu_list">
-                        <li>
-                            <Link className="nav-link" to="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link className="nav-link" to="/client">Client</Link>
-                        </li>
-                        <li>
-                            <Link className="nav-link" to="/server">Server</Link>
-                        </li>
-                        <li>
-                            <Link className="nav-link" to="/security">Security</Link>
-                        </li>
-                    </ul>
+                <nav className="nav mainMenu">
+                    <div className="container">
+                        <ul className="mainMenu_list">
+                            <li>
+                                <Link className="nav-link" to="/">Home</Link>
+                            </li>
+                            <li>
+                                <Link className="nav-link" to="/client">Client</Link>
+                            </li>
+                            <li>
+                                <Link className="nav-link" to="/server">Server</Link>
+                            </li>
+                            <li>
+                                <Link className="nav-link" to="/security">Security</Link>
+                            </li>
+                        </ul>
+                    </div>
                 </nav>
                 
                 <Switch>

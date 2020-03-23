@@ -61,11 +61,13 @@ export class ClientContent extends React.Component {
 		return ( 
 			<Router>
 				<nav className="nav justify-content-center mainMenu_subList">
+					<div className="container">
 					{
 						posts.map((post, id) => (
 							<Link className="nav-link" to={"/client/"+id}>{post.title}</Link>
 						))
 					}
+					</div>
                 </nav>
 				<Switch>
 					<Route exact path="/client">	
