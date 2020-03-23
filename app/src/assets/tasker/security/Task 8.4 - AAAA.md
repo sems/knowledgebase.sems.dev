@@ -32,7 +32,7 @@ As a software engineer you must be able to interiorize new technologies. Explore
 ## Subtask: Authentication
 
 1.  Design, develop and test a _new user registration_ web page
-2.  Design, develop and test a _login_ web page
+2.  Design, develop and test a _login_ web page (email as username)
 3.  Store passwords in the database in secure fashion (e.g. scrypt, bcrypt)
 4.  Use proper password strength controls
 5.  Use secure session IDs
