@@ -1,6 +1,7 @@
 import React from 'react';
 import Prism from "prismjs";
 import marked from "marked";
+import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
 import {Markdown} from './Markdown';
 import {Container} from './Container'
@@ -58,17 +59,45 @@ export class ClientContent extends React.Component {
 		const { posts } = this.state;
 		
 		return ( 
-			<Container>
-				<div className="col-md-12">
-					<div className="client_content">
-						{
-							posts.map((post, id) => (
-								<Markdown key={id} title={post.title} content={marked(post.content)}></Markdown>
-							))
-						}
-					</div>
-				</div>
-			</Container>
+			<Router>
+				<nav className="nav justify-content-center mainMenu_subList">
+					{
+						posts.map((post, id) => (
+							<Link className="nav-link" to={"/client/"+id}>{post.title}</Link>
+						))
+					}
+                </nav>
+				<Switch>
+					<Route exact path="/client">	
+						<Container>
+							<div className="col-md-12">
+								<div className="client_content">
+									{
+										posts.map((post, id) => (	
+											<Markdown key={id} title={post.title} content={marked(post.content)}></Markdown>
+										))
+									}
+									
+								</div>
+							</div>
+						</Container>
+					</Route>
+					{
+						posts.map((post, id) => (	
+							<Route exact path={"/client/"+id}>	
+								<Container>
+									<div className="col-md-12">
+										<div className="client_content">
+											<Markdown key={id} title={post.title} content={marked(post.content)}></Markdown>
+										</div>
+									</div>
+								</Container>
+							</Route>
+						))
+					}
+				</Switch>
+			</Router>
+			
 		)
 	}
 }

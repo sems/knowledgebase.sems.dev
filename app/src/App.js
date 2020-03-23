@@ -31,9 +31,7 @@ class App extends Component {
                         </li>
                     </ul>
                 </nav>
-
-                <hr></hr>
-
+                
                 <Switch>
                     <Route exact path="/">
                         <Home/>

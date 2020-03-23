@@ -1,6 +1,7 @@
 import React from 'react';
 import Prism from "prismjs";
 import marked from "marked";
+import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
 import {Markdown} from './Markdown';
 import {Container} from './Container'
@@ -29,7 +30,7 @@ export class ServerContent extends React.Component {
 			markdownFiles.map((file) => fetch(file)
 			.then((res) => res.text())
 			.then(text => {
-					let x = file.split(" - ")[1];
+					let x = file.split("Task ")[1];
 					return {
 						content: text,
 						title: x.substring(0, x.length - 12)
@@ -57,17 +58,44 @@ export class ServerContent extends React.Component {
 	render() {
 		const { posts } = this.state;
 		return ( 
-			<Container>
-				<div className="col-md-12">
-					<div className="server_content">
-						{
-							posts.map((post, id) => (
-								<Markdown key={id} title={post.title} content={marked(post.content)}></Markdown>
-							))
-						}
-					</div>
-				</div>
-			</Container>
+			<Router>
+				<nav className="nav justify-content-center mainMenu_subList">
+					{
+						posts.map((post, id) => (
+							<Link className="nav-link" to={"/server/"+id}>{post.title}</Link>
+						))
+					}
+				</nav>
+				<Switch>
+					<Route exact path="/server">	
+						<Container>
+							<div className="col-md-12">
+								<div className="server_content">
+									{
+										posts.map((post, id) => (	
+											<Markdown key={id} title={post.title} content={marked(post.content)}></Markdown>
+										))
+									}
+									
+								</div>
+							</div>
+						</Container>
+					</Route>
+					{
+						posts.map((post, id) => (	
+							<Route exact path={"/server/"+id}>	
+								<Container>
+									<div className="col-md-12">
+										<div className="server_content">
+											<Markdown key={id} title={post.title} content={marked(post.content)}></Markdown>
+										</div>
+									</div>
+								</Container>
+							</Route>
+						))
+					}
+				</Switch>
+			</Router>
 		)
 	}
 }
