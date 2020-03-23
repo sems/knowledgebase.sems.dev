@@ -1,1 +1,2 @@
-# markdown.sems.dev
+# Knowledgebase.sems.dev
+[![Build Status](https://travis-ci.com/semspanhaak/knowledgebase.sems.dev.svg?token=7p3qZx8295pjmxWfK7yc&branch=master)](https://travis-ci.com/semspanhaak/knowledgebase.sems.dev)
