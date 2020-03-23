@@ -54,7 +54,7 @@ export class SecurityContent extends React.Component {
 		return ( 
 			<Container>
 				<div className="col-md-12">
-					<div className="client_content">
+					<div className="security_content">
 						{
 							posts.map((post, id) => (
 								<Markdown key={id} content={marked(post)}></Markdown>
