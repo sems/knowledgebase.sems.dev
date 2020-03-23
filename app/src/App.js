@@ -14,41 +14,41 @@ class App extends Component {
     return (
       <div className="">
         <Router>
-          <div>
-            <nav className="nav justify-content-center mainMenu">
-              <ul className="mainMenu_list">
-                <li>
-                  <Link className="nav-link" to="/">Home</Link>
-                </li>
-                <li>
-                  <Link className="nav-link" to="/client">Client</Link>
-                </li>
-                <li>
-                  <Link className="nav-link" to="/server">Server</Link>
-                </li>
-                <li>
-                  <Link className="nav-link" to="/security">Security</Link>
-                </li>
-              </ul>
-            </nav>
+            <div>
+                <nav className="nav justify-content-center mainMenu">
+                    <ul className="mainMenu_list">
+                        <li>
+                            <Link className="nav-link" to="/">Home</Link>
+                        </li>
+                        <li>
+                            <Link className="nav-link" to="/client">Client</Link>
+                        </li>
+                        <li>
+                            <Link className="nav-link" to="/server">Server</Link>
+                        </li>
+                        <li>
+                            <Link className="nav-link" to="/security">Security</Link>
+                        </li>
+                    </ul>
+                </nav>
 
-            <hr></hr>
+                <hr></hr>
 
-            <Switch>
-              <Route exact path="/">
-                  <Home/>
-              </Route>
-              <Route exact path="/client">
-                <ClientContent/>
-              </Route>
-              <Route exact path="/server">
-                <ServerContent/>
-              </Route>
-              <Route exact path="/security">
-                <SecurityContent/>
-              </Route>
-            </Switch>
-          </div>
+                <Switch>
+                    <Route exact path="/">
+                        <Home/>
+                    </Route>
+                    <Route exact path="/client">
+                        <ClientContent/>
+                    </Route>
+                    <Route exact path="/server">
+                        <ServerContent/>
+                    </Route>
+                    <Route exact path="/security">
+                        <SecurityContent/>
+                    </Route>
+                </Switch>
+            </div>
         </Router>
       </div>
     );
