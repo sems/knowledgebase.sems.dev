@@ -29,7 +29,7 @@ export class ClientContent extends React.Component {
 			markdownFiles.map((file) => fetch(file)
 			.then((res) => res.text())
 			.then(text => {
-					let x = file.split(" - ")[1];
+					let x = file.split("Task ")[1];
 					return {
 						content: text,
 						title: x.substring(0, x.length - 12)
