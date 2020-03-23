@@ -1,4 +1,4 @@
-\*\* Task group: vulnerability scanning \*\*
+**Task group: vulnerability scanning**
 
 # Context
 

@@ -1,4 +1,4 @@
-\*\* Task group: server security \*\*
+**Task group: server security**
 
 # Context
 

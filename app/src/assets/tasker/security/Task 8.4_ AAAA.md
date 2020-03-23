@@ -1,4 +1,4 @@
-\*\* Task group: Access control \*\*
+**Task group: Access control**
 
 # Context
 

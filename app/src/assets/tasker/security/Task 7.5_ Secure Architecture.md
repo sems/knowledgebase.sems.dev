@@ -1,4 +1,4 @@
-\*\* Task group: secure architecture: did you think?
+**Task group: secure architecture: did you think?
 
 # Context
 

@@ -1,4 +1,4 @@
-\*\* Task group: client security \*\*
+**Task group: client security**
 
 # Context
 

@@ -1,4 +1,4 @@
-\*\* Task group: middleware \*\*
+**Task group: middleware**
 
 # Context
 

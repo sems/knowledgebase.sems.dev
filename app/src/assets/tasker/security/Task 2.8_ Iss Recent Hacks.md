@@ -1,4 +1,4 @@
-\*\* Task group: Information System Security \*\*
+**Task group: Information System Security**
 
 # Context
 

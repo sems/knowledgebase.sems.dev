@@ -1,4 +1,4 @@
-\*\* Task group: Infrastructure \*\*
+**Task group: Infrastructure**
 
 # Context
 

@@ -1,4 +1,4 @@
-\*\* task group: secure communication \*\*
+**task group: secure communication**
 
 # Context
 
