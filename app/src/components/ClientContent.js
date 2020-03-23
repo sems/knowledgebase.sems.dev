@@ -2,11 +2,8 @@ import React from 'react';
 import Prism from "prismjs";
 import marked from "marked";
 
-import { Post } from './post';
-
-import '../styles/content.sass';
-import '../styles/prism.css';
-import '../styles/page.sass';
+import {Markdown} from './Markdown';
+import {Container} from './Container'
 
 const importAll = (r) => r.keys().map(r);
 const markdownFiles = importAll(require.context('../assets/tasker/client', false, /\.md$/))
@@ -55,17 +52,17 @@ export class ClientContent extends React.Component {
 		const { posts } = this.state;
 		
 		return ( 
-			<div className="front-header">
-				<div className="main">
+			<Container>
+				<div className="col-md-12">
 					<div className="client_content">
 						{
 							posts.map((post, id) => (
-								<Post key={id} content={marked(post)}></Post>
+								<Markdown key={id} content={marked(post)}></Markdown>
 							))
 						}
 					</div>
 				</div>
-			</div>
+			</Container>
 		)
 	}
 }
