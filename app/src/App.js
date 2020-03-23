@@ -10,45 +10,44 @@ import {SecurityContent} from './components/SecurityContent';
 import './styles/main.sass';
 
 class App extends Component {
-
   render() {
     return (
-      <div className="home_container">
+      <div className="">
         <Router>
           <div>
-            <nav className="mainMenu">
+            <nav className="nav justify-content-center mainMenu">
               <ul className="mainMenu_list">
                 <li>
-                  <Link to="/">Home</Link>
+                  <Link className="nav-link" to="/">Home</Link>
                 </li>
                 <li>
-                  <Link to="/client">Client</Link>
+                  <Link className="nav-link" to="/client">Client</Link>
                 </li>
                 <li>
-                  <Link to="/server">Server</Link>
+                  <Link className="nav-link" to="/server">Server</Link>
                 </li>
                 <li>
-                  <Link to="/security">Security</Link>
+                  <Link className="nav-link" to="/security">Security</Link>
                 </li>
               </ul>
-
-              <hr></hr>
-
-              <Switch>
-                <Route exact path="/">
-                  <Home/>
-                </Route>
-                <Route exact path="/client">
-                  <ClientContent/>
-                </Route>
-                <Route exact path="/server">
-                  <ServerContent/>
-                </Route>
-                <Route exact path="/security">
-                  <SecurityContent/>
-                </Route>
-              </Switch>
             </nav>
+
+            <hr></hr>
+
+            <Switch>
+              <Route exact path="/">
+                  <Home/>
+              </Route>
+              <Route exact path="/client">
+                <ClientContent/>
+              </Route>
+              <Route exact path="/server">
+                <ServerContent/>
+              </Route>
+              <Route exact path="/security">
+                <SecurityContent/>
+              </Route>
+            </Switch>
           </div>
         </Router>
       </div>
