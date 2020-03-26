@@ -6,28 +6,47 @@ import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import {Markdown} from './Markdown';
 import {Container} from './Container'
 
-const importAll = (r) => r.keys().map(r);
-const markdownFiles = importAll(require.context('../assets/tasker/security', false, /\.md$/))
-	.sort(function(a, b) {
-		var aa = a.substring(19).split('.');
-		var bb = b.substring(19).split('.');
-		if (parseInt(aa[0]) === parseInt(bb[0])) {
-			return parseInt(aa[1].split(' - ')[0]) < parseInt(bb[1].split(' - ')[0]) ? -1 : 1;
-		}
-		return parseInt(aa[0]) < parseInt(bb[0]) ? -1 : 1;
-	});
-
-export class SecurityContent extends React.Component {
+export class Course extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			posts: [],
+		this.state = {	
+            posts: [],
+            files: ""
 		};
 	}
 
-	async componentDidMount() {
+    
+    
+    importAll = (r) => r.keys().map(r);
+
+    componentWillMount() {
+		marked.setOptions({
+			breaks: true,
+			highlight: function (code, lang) {
+				try {
+					return Prism.highlight(code, Prism.languages[lang], lang);
+				} catch {
+					return code;
+				}
+			}
+        });
+        
+        const files = importAll(require
+            .context('../assets/tasker/'+this.props.type, false, /\.md$/))
+            .sort(function(a, b) {
+                var aa = a.substring(19).split('.');
+                var bb = b.substring(19).split('.');
+                if (parseInt(aa[0]) === parseInt(bb[0])) {
+                    return parseInt(aa[1].split(' - ')[0]) < parseInt(bb[1].split(' - ')[0]) ? -1 : 1;
+                }
+                return parseInt(aa[0]) < parseInt(bb[0]) ? -1 : 1;
+            });
+        this.state.files = files
+    }
+
+    async componentDidMount() {
 		const posts = await Promise.all(
-			markdownFiles.map((file) => fetch(file)
+			this.state.files.map((file) => fetch(file)
 			.then((res) => res.text())
 			.then(text => {
 					let x = file.split("Task ")[1];
@@ -39,38 +58,25 @@ export class SecurityContent extends React.Component {
 			)
 		.catch((err) => console.error(err));
 
-		this.setState((state) => ({ ...state, posts }));
-	}
-	
-	componentWillMount() {
-		marked.setOptions({
-			breaks: true,
-			highlight: function (code, lang) {
-				try {
-					return Prism.highlight(code, Prism.languages[lang], lang);
-				} catch {
-					return code;
-				}
-			}
-		});
-	}
-
+        this.setState((state) => ({ ...state, posts }));
+    }
+    
 	render() {
-		const { posts } = this.state;
-		
-		return ( 
+        const { posts } = this.state;
+
+		return(
 			<Router>
 				<nav className="nav mainMenu_subList">
 					<div className="container">
 					{
 						posts.map((post, id) => (
-							<Link className="nav-link" to={"/security/"+id}>{post.title}</Link>
+							<Link className="nav-link" to={"/" + this.props.type + "/" + id}>{post.title}</Link>
 						))
 					}
 					</div>
 				</nav>
 				<Switch>
-					<Route exact path="/security">	
+					<Route exact path={"/"+ this.props.type} >	
 						<Container>
 							<div className="col-md-12">
 								<div className="security_content">
@@ -86,7 +92,7 @@ export class SecurityContent extends React.Component {
 					</Route>
 					{
 						posts.map((post, id) => (	
-							<Route exact path={"/security/"+id}>	
+							<Route exact path={"/" + this.props.type + "/" + id}>	
 								<Container>
 									<div className="col-md-12">
 										<div className="security_content">
@@ -102,3 +108,4 @@ export class SecurityContent extends React.Component {
 		)
 	}
 }
+  

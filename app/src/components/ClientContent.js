@@ -7,7 +7,8 @@ import {Markdown} from './Markdown';
 import {Container} from './Container'
 
 const importAll = (r) => r.keys().map(r);
-const markdownFiles = importAll(require.context('../assets/tasker/client', false, /\.md$/))
+const markdownFiles = importAll(require
+	.context('../assets/tasker/client', false, /\.md$/))
 	.sort(function(a, b) {
 		var aa = a.substring(19).split('.');
 		var bb = b.substring(19).split('.');
