@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
-
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-
 import {Home} from './components/Home';
-import {ClientContent} from './components/ClientContent';
-import {ServerContent} from './components/ServerContent';
-import {SecurityContent} from './components/SecurityContent';
 
 import './styles/main.sass';
+
+import { Course } from './components/Course';
+
+const clientContext = require.context(`./assets/tasker/client`, false, /\.md$/)
+const serverContext = require.context(`./assets/tasker/server`, false, /\.md$/)
+const securityContext = require.context(`./assets/tasker/security`, false, /\.md$/)
+const integrationContext = require.context(`./assets/tasker/integration`, false, /\.md$/)
 
 class App extends Component {
   render() {
     return (
-      <div className="">
         <Router>
             <div>
                 <nav className="nav mainMenu">
@@ -30,6 +31,9 @@ class App extends Component {
                             <li>
                                 <Link className="nav-link" to="/security">Security</Link>
                             </li>
+                            <li>
+                                <Link className="nav-link" to="/integration">Integration</Link>
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -39,18 +43,20 @@ class App extends Component {
                         <Home/>
                     </Route>
                     <Route exact path="/client">
-                        <ClientContent/>
+                        <Course type="client" context={clientContext}/>   
                     </Route>
                     <Route exact path="/server">
-                        <ServerContent/>
+                        <Course type="server" context={serverContext}/>   
                     </Route>
                     <Route exact path="/security">
-                        <SecurityContent/>
+                        <Course type="security" context={securityContext}/>  
+                    </Route>
+                    <Route exact path="/integration">
+                        <Course type="integration" context={integrationContext}/>  
                     </Route>
                 </Switch>
             </div>
         </Router>
-      </div>
     );
   }
 }
