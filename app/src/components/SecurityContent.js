@@ -42,7 +42,7 @@ export class SecurityContent extends React.Component {
 		this.setState((state) => ({ ...state, posts }));
 	}
 	
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		marked.setOptions({
 			breaks: true,
 			highlight: function (code, lang) {
@@ -64,7 +64,7 @@ export class SecurityContent extends React.Component {
 					<div className="container">
 					{
 						posts.map((post, id) => (
-							<Link className="nav-link" to={"/security/"+id}>{post.title}</Link>
+							<Link key={id} className="nav-link" to={"/security/"+id}>{post.title}</Link>
 						))
 					}
 					</div>
@@ -86,7 +86,7 @@ export class SecurityContent extends React.Component {
 					</Route>
 					{
 						posts.map((post, id) => (	
-							<Route exact path={"/security/"+id}>	
+							<Route key={id} exact path={"/security/"+id}>	
 								<Container>
 									<div className="col-md-12">
 										<div className="security_content">

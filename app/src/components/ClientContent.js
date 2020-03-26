@@ -7,8 +7,9 @@ import {Markdown} from './Markdown';
 import {Container} from './Container'
 
 const importAll = (r) => r.keys().map(r);
-const markdownFiles = importAll(require
-	.context('../assets/tasker/client', false, /\.md$/))
+
+const fda = require.context(`../assets/tasker/client`, false, /\.md$/)
+const markdownFiles = importAll(fda)
 	.sort(function(a, b) {
 		var aa = a.substring(19).split('.');
 		var bb = b.substring(19).split('.');
@@ -43,7 +44,7 @@ export class ClientContent extends React.Component {
 		this.setState((state) => ({ ...state, posts }));
 	}
 	
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		marked.setOptions({
 			breaks: true,
 			highlight: function (code, lang) {
@@ -65,7 +66,7 @@ export class ClientContent extends React.Component {
 					<div className="container">
 					{
 						posts.map((post, id) => (
-							<Link className="nav-link" to={"/client/"+id}>{post.title}</Link>
+							<Link key={id} className="nav-link" to={"/client/"+id}>{post.title}</Link>
 						))
 					}
 					</div>
@@ -87,7 +88,7 @@ export class ClientContent extends React.Component {
 					</Route>
 					{
 						posts.map((post, id) => (	
-							<Route exact path={"/client/"+id}>	
+							<Route key={id} exact path={"/client/"+id}>	
 								<Container>
 									<div className="col-md-12">
 										<div className="client_content">
