@@ -1,15 +1,20 @@
 @import '~bootstrap/scss/bootstrap.scss'
+
 body 
     height: 100%
     margin: 0px
     padding: 0px
     font-family: 'Nunito', sans-serif
     background-color: #092d6c
-    color: #fff
-    a 
+    color: #fff 
+    a
         color:#E52A24
         text-decoration: underline
         font-weight: bold
+        &.nav-link
+            &:hover
+                color: darken(#E52A24, 10%)    
+                text-decoration: none
     .mainMenu 
         .mainMenu_list
             padding: 0em 2em
@@ -17,14 +22,17 @@ body
             li 
                 font-size: 2em
                 display: inline-block
-                margin-right: 2em
-
+                margin-right: 2em     
+                a
+                     
     .mainMenu_subList
         a
             color: #8FCDFF
             display: inline-block
             &.nav-link
                 padding: 0.2rem 0.75rem
+                &:hover
+                    color: darken(#8FCDFF, 10%) 
 @media (prefers-color-scheme: dark)
     body 
         background-color: #000
